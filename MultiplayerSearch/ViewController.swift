@@ -28,6 +28,8 @@ class ViewController: UIViewController {
                                    y: myAvatar.center.y)
     let leftBouncePoint = CGPoint(x: view.frame.size.width/2.0 - bounceXOffset,
                                   y: myAvatar.center.y)
+    myAvatar.bounceOff(point: rightBouncePoint, morphSize: morphSize)
+    opponentAvatar.bounceOff(point: leftBouncePoint, morphSize: morphSize)
   }
   
   @IBAction func actionSearchAgain() {

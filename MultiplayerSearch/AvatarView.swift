@@ -71,5 +71,28 @@ class AvatarView: UIView {
     //Size the label
     label.frame = CGRect(x: 0.0, y: bounds.size.height + 10.0, width: bounds.size.width, height: 24.0)
   }
-  
+
+  func bounceOff(point: CGPoint, morphSize: CGSize) {
+    let originalCenter = center
+    UIView.animate(withDuration: animationDuration, delay: 0.0,
+                   usingSpringWithDamping: 0.8, initialSpringVelocity: 0.0,
+                   animations: {
+                    self.center = point
+
+    }, completion: { _ in
+      //completion
+    })
+
+    UIView.animate(withDuration: animationDuration,
+                   delay: animationDuration, usingSpringWithDamping: 0.7,
+                   initialSpringVelocity: 1.0,
+                   animations: {
+                    self.center = originalCenter
+
+    }, completion: { _ in
+        delay(seconds: 0.1) {
+          self.bounceOff(point: point, morphSize: morphSize)
+        }
+    })
+  }
 }
